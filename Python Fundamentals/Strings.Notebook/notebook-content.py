@@ -593,3 +593,311 @@ print(f'Customer {customer_id} | {customer_name}|{email} |{country}')
 # META   "language": "python",
 # META   "language_group": "synapse_pyspark"
 # META }
+
+# MARKDOWN ********************
+
+# <u>**LISTS**</u>
+
+# CELL ********************
+
+#print First product Last product and Number of products
+
+products = [
+    "Laptop",
+    "Mouse",
+    "Keyboard",
+    "Monitor"
+]
+
+print(products)
+#print(f'first product is {products[0]} last product is {products[-1]} and length of products is {len(products)}')
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+# ADD Headphones
+products.append('head phones')
+print(products)
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+#remove mouse
+products.remove('Mouse')
+print(products)
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+#create a list and print first price, last price, first 3 prices, number of prices
+
+prices = [100, 250, 75, 500, 120]
+
+print(f'first price is {prices[0]}')
+print(f'last price is {prices[-1]}')
+print(f'first 3 prices are {prices[0:3]}')
+print(f'Number of prices are {len(prices)}')
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+# Data engineering exercise
+#create a new list cleaned countries
+
+countries = [
+    " germany ",
+    "GERMANY",
+    " India ",
+    "INDIA",
+    " france "
+]
+
+cleaned_countries=[]
+
+for country in countries:
+    cleaned_country=country.strip().title()
+    cleaned_countries.append(cleaned_country)
+print(cleaned_countries)
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+# try ,except blocks
+raw_prices = [
+    "100.50",
+    "250",
+    "75.25",
+    "invalid",
+    "500"
+     ]
+valid_prices=[]
+for price in raw_prices:
+    try:
+
+        price=float(price)
+        valid_prices.append(price)
+    
+    except ValueError:
+        price=0
+
+print(valid_prices)
+
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+#list comprehensions
+numbers = [1, 2, 3, 4, 5]
+
+squared_numbers = []
+
+for number in numbers:
+    squared_numbers.append(number ** 2)
+    
+# using list comprehension
+
+squared_numbers=[number **2 for number in numbers]
+print(squared_numbers)
+
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+#cleaning names using list comprehensions
+raw_names = [
+    " john smith ",
+    "MARY JONES",
+    " david brown ",
+    "SARAH WILSON"
+]
+
+cleaned_names=[ name.strip().title() for name in raw_names]
+print(cleaned_names)
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+#Create a list containing only the valid numeric values.
+raw_quantities = [
+    "10",
+    "25",
+    "invalid",
+    "50",
+    "100"
+]
+
+valid_quantities =[ quantity for quantity in raw_quantities if(quantity.isdigit())]
+print(valid_quantities)
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+amounts = [100, -50, 250, 0, 75, -20, 300]
+
+valid_amounts=[amount for amount in amounts if amount>0]
+print(valid_amounts)
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+raw_amounts = [
+    "100",
+    "250",
+    "invalid",
+    "75",
+    "abc",
+    "500"
+]
+
+valid_amounts=[int(amount) for amount in raw_amounts if amount.isdigit()]
+print(valid_amounts)
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+raw_names = [
+    " john smith ",
+    "",
+    "MARY JONES",
+    "   ",
+    "david brown",
+    "SARAH WILSON",
+    " "
+]
+
+cleaned_names= [ name.strip().title() for name in raw_names if name.strip()]
+
+print(cleaned_names)
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+raw_quantities = [
+    "10",
+    " 25 ",
+    "invalid",
+    "",
+    " 50",
+    "abc",
+    "100 "
+]
+
+valid_values =[int(value.strip()) for value in raw_quantities if value.strip().isdigit()]
+
+print(valid_values)
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+raw_prices = [
+    "100.50",
+    "250",
+    " 75.25 ",
+    "invalid",
+    "",
+    "500.75"
+]
+
+def is_valid_price(value):
+    try:
+        float(value.strip())
+        return True
+    except ValueError:
+        return False
+
+valid_prices =[ float(price.strip()) for price in raw_prices if is_valid_price(price)]
+
+
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# MARKDOWN ********************
+
+# # Transformation
+# [expression for item in list]
+# 
+# # Transformation + filtering
+# [expression for item in list if condition]

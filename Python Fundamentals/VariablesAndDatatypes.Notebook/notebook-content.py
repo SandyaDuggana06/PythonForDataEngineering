@@ -325,3 +325,17 @@ print('Order Value', order_value)
 # META   "language": "python",
 # META   "language_group": "synapse_pyspark"
 # META }
+
+# CELL ********************
+
+first_name = "Sandya"
+last_name = "Duggana"
+full_name = first_name+ last_name
+print(full_name)
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
