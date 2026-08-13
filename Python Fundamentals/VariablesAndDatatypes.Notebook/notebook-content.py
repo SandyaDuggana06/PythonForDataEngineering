@@ -169,6 +169,9 @@ Result:
 
 97.0
 
+what is dynamic typing in python
+Dynamic typing means that in Python, you don't need to declare the data type of a variable. Python determines the type at runtime.
+
 '''
 
 # METADATA ********************
@@ -330,8 +333,230 @@ print('Order Value', order_value)
 
 first_name = "Sandya"
 last_name = "Duggana"
-full_name = first_name+ last_name
+full_name = first_name+" "+ last_name
 print(full_name)
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+x = "10"
+y = "20"
+
+print(x + y)
+
+x=int(x)
+y=int(y)
+print(x+y)
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+x = 10
+y = 20
+
+print(str(x) + str(y))
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+email = None
+phone = "123456789"
+
+print(email is None)
+print(phone is None)
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+#isinstance() is a Python function used to check whether a value belongs to a particular data type (class).
+
+a = 100
+b = "100"
+c = 25.5
+print(isinstance(a,int))
+print(isinstance(b,int))
+print(isinstance(c,int))
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+status='False'
+is_active=bool(status)
+print(is_active)
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+#Cleaning API Data
+user = {
+    "user_id": "1001",
+    "age": "35",
+    "salary": "65000.50",
+    "active": "True"
+}
+
+user['user_id']=int(user['user_id'])
+user['age']=int(user['age'])
+user['salary']=float(user['salary'])
+user["active"] = user["active"].lower() == "true"
+print(type(user['user_id']))
+print(type(user['age']))
+print(type(user['salary']))
+print(type(user['active']))
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+product = {
+    "product_id": "501",
+    "price": "29.99",
+    "quantity": "10"
+}
+
+product['price']=float(product['price'])
+product['quantity']=int(product['quantity'])
+total_value = product['price'] * product['quantity']
+print(total_value)
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+#missing data
+records = [
+    {"name": "John", "age": "30"},
+    {"name": "Alice", "age": None},
+    {"name": "Bob", "age": "40"}
+]
+
+for person in records:
+    try:
+        person['age']=int(person['age'])
+    except (ValueError,TypeError):
+        person['age'] = None
+
+print(records)
+
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+raw_ages = [
+    "25",
+    " 17 ",
+    "42",
+    "invalid",
+    "65",
+    "0",
+    " 30 ",
+    "-5"
+]
+
+def clean_age(value):
+    try:
+        return int(value.strip())
+    except:
+        return None
+
+cleaned_ages= [value for value in [clean_age(age) for age in raw_ages] if value is not None and value >18
+
+]
+print(cleaned_ages)
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+raw_users = [
+    {"id": "101", "age": "25", "salary": "50000.50"},
+    {"id": "102", "age": "invalid", "salary": "60000"},
+    {"id": "103", "age": " 35 ", "salary": "70000.75"},
+    {"id": "104", "age": None, "salary": "invalid"},
+]
+
+
+def clean_user(user):
+        try:
+            user['id']=int(user['id'])
+          
+        except(ValueError,TypeError):
+           user['id']=None
+        try:    
+            user['age']=int(user['age'])
+            
+        except(ValueError,TypeError):
+            user['age']=None
+            
+        try:
+            user['salary']=float(user['salary'])
+        except(ValueError,TypeError):
+            user['salary']=None
+        return user
+
+
+cleaned_users =[clean_user(user) for user in raw_users]
+
+print(cleaned_users)
+
+
 
 # METADATA ********************
 

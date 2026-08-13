@@ -901,3 +901,296 @@ valid_prices =[ float(price.strip()) for price in raw_prices if is_valid_price(p
 # 
 # # Transformation + filtering
 # [expression for item in list if condition]
+
+# CELL ********************
+
+name = "  Sandya Duggana  "
+name =name.strip()
+print(name)
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+country = "GERMANY"
+country= country.lower()
+print(country)
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+country = "india"
+country=country.upper()
+print(country)
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+text = "Data Engineering"
+text=text.replace("Engineering","Science")
+print(text)
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+text = "Python,SQL,Power BI,Fabric"
+text=text.split(',')
+print(text)
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+skills = ["Python", "SQL", "PySpark", "Fabric"]
+result = " | ".join(skills)
+
+print(result)
+
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+email = "sandya.duggana@gmail.com"
+email=email.split('@')
+print(email)
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+word = "Python"
+
+print(word[0])
+print(word[-1])
+print(word[0:3])
+print(word[-3:])
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+date = "2026-08-12"
+date=date.split('-')
+print(date[0])
+print(date[1])
+print(date[2])
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+countries = [
+    " germany ",
+    "GERMANY",
+    " India ",
+    "INDIA",
+    " france "
+]
+
+cleaned_countries= [country.strip().lower() for country in countries]
+print(cleaned_countries)
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+names = [
+    " john ",
+    "ALICE",
+    " Bob",
+    "sarah "
+]
+
+cleaned_names= [name.strip().title() for name in names]
+print(cleaned_names)
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+emails = [
+    "  JOHN@GMAIL.COM ",
+    "alice@yahoo.com",
+    " BOB@OUTLOOK.COM",
+    "sarah@gmail.com "
+]
+
+emails_cleaned=[email.strip().lower() for email in emails]
+print(emails_cleaned)
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+raw_names = [
+    "  john doe ",
+    "ALICE SMITH",
+    " bob   jones ",
+    "Sarah Brown  "
+]
+
+cleaned_names = [" ".join(name.strip().lower().split()) for name in raw_names]
+print(cleaned_names)
+
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# MARKDOWN ********************
+
+# interview Questions
+# difference between strip and replace
+# The main difference is:
+# 
+# strip() → removes characters from the beginning and end
+# replace() → replaces specific characters/text wherever they occur
+# 
+# 
+# Difference between split and join
+# The easiest way to remember is:
+# 
+# split() → string → list
+# join() → list → string
+# split() breaks a string into a list.
+# join() combines strings from a list into one string.
+# 
+# Why does this:text = "  Data Engineering  "
+# text.strip()
+# not permanently change text?
+# 
+# Because Python strings are immutable.
+# 
+# That means once a string is created, its contents cannot be changed. Methods like strip(), replace(), and lower() create and return a new string instead of modifying the original.
+# 
+# 
+# What does this return?
+# 
+# "Python"[::-1]
+# It returns the string in reverse order:
+# 
+# "Python"[::-1]
+# 
+# Output:
+# 
+# nohtyP
+# Why?
+# 
+# [::-1] is Python slicing syntax:
+# 
+# [start : stop : step]
+# 
+# Here:
+# 
+# [::-1]
+# 
+# means:
+# 
+# start → omitted → start from the end when stepping backwards
+# stop → omitted → go through the whole string
+# step → -1 → move backwards one character at a time
+
+
+# CELL ********************
+
+customers = [
+    {
+        "name": "  JOHN DOE ",
+        "email": " JOHN@GMAIL.COM ",
+        "country": " GERMANY "
+    },
+    {
+        "name": " alice smith",
+        "email": "alice@YAHOO.COM",
+        "country": "india"
+    },
+    {
+        "name": "  Bob   Jones ",
+        "email": " BOB@OUTLOOK.COM ",
+        "country": " FRANCE "
+    }
+]
+
+
+def clean_customers(cust):
+    cust['name']=" ".join(cust['name'].strip().lower().split())
+    cust['email']=cust['email'].lower().strip()
+    cust['country']=cust['country'].lower().strip()
+    return cust
+
+cleaned_customers= [clean_customers(cust) for cust in customers]
+print(cleaned_customers)
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }

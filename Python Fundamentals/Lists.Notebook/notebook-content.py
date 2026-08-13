@@ -4,8 +4,7 @@
 
 # META {
 # META   "kernel_info": {
-# META     "name": "jupyter",
-# META     "jupyter_kernel_name": "python3.12"
+# META     "name": "synapse_pyspark"
 # META   },
 # META   "dependencies": {}
 # META }
@@ -109,7 +108,7 @@ Transformation + filtering
 
 # META {
 # META   "language": "python",
-# META   "language_group": "jupyter_python"
+# META   "language_group": "synapse_pyspark"
 # META }
 
 # CELL ********************
@@ -130,7 +129,7 @@ print(products)
 
 # META {
 # META   "language": "python",
-# META   "language_group": "jupyter_python"
+# META   "language_group": "synapse_pyspark"
 # META }
 
 # CELL ********************
@@ -143,7 +142,7 @@ print(products)
 
 # META {
 # META   "language": "python",
-# META   "language_group": "jupyter_python"
+# META   "language_group": "synapse_pyspark"
 # META }
 
 # CELL ********************
@@ -156,7 +155,7 @@ print(products)
 
 # META {
 # META   "language": "python",
-# META   "language_group": "jupyter_python"
+# META   "language_group": "synapse_pyspark"
 # META }
 
 # CELL ********************
@@ -174,7 +173,7 @@ print(f'Number of prices are {len(prices)}')
 
 # META {
 # META   "language": "python",
-# META   "language_group": "jupyter_python"
+# META   "language_group": "synapse_pyspark"
 # META }
 
 # CELL ********************
@@ -201,7 +200,7 @@ print(cleaned_countries)
 
 # META {
 # META   "language": "python",
-# META   "language_group": "jupyter_python"
+# META   "language_group": "synapse_pyspark"
 # META }
 
 # CELL ********************
@@ -230,7 +229,7 @@ print(valid_prices)
 
 # META {
 # META   "language": "python",
-# META   "language_group": "jupyter_python"
+# META   "language_group": "synapse_pyspark"
 # META }
 
 # CELL ********************
@@ -253,7 +252,7 @@ print(squared_numbers)
 
 # META {
 # META   "language": "python",
-# META   "language_group": "jupyter_python"
+# META   "language_group": "synapse_pyspark"
 # META }
 
 # CELL ********************
@@ -273,7 +272,7 @@ print(cleaned_names)
 
 # META {
 # META   "language": "python",
-# META   "language_group": "jupyter_python"
+# META   "language_group": "synapse_pyspark"
 # META }
 
 # CELL ********************
@@ -294,7 +293,7 @@ print(valid_quantities)
 
 # META {
 # META   "language": "python",
-# META   "language_group": "jupyter_python"
+# META   "language_group": "synapse_pyspark"
 # META }
 
 # CELL ********************
@@ -308,7 +307,7 @@ print(valid_amounts)
 
 # META {
 # META   "language": "python",
-# META   "language_group": "jupyter_python"
+# META   "language_group": "synapse_pyspark"
 # META }
 
 # CELL ********************
@@ -329,7 +328,7 @@ print(valid_amounts)
 
 # META {
 # META   "language": "python",
-# META   "language_group": "jupyter_python"
+# META   "language_group": "synapse_pyspark"
 # META }
 
 # CELL ********************
@@ -352,7 +351,7 @@ print(cleaned_names)
 
 # META {
 # META   "language": "python",
-# META   "language_group": "jupyter_python"
+# META   "language_group": "synapse_pyspark"
 # META }
 
 # CELL ********************
@@ -375,7 +374,7 @@ print(valid_values)
 
 # META {
 # META   "language": "python",
-# META   "language_group": "jupyter_python"
+# META   "language_group": "synapse_pyspark"
 # META }
 
 # CELL ********************
@@ -404,7 +403,7 @@ valid_prices =[ float(price.strip()) for price in raw_prices if is_valid_price(p
 
 # META {
 # META   "language": "python",
-# META   "language_group": "jupyter_python"
+# META   "language_group": "synapse_pyspark"
 # META }
 
 # CELL ********************
@@ -424,7 +423,7 @@ print(new_quantities)
 
 # META {
 # META   "language": "python",
-# META   "language_group": "jupyter_python"
+# META   "language_group": "synapse_pyspark"
 # META }
 
 # CELL ********************
@@ -455,7 +454,7 @@ print(new_values)
 
 # META {
 # META   "language": "python",
-# META   "language_group": "jupyter_python"
+# META   "language_group": "synapse_pyspark"
 # META }
 
 # CELL ********************
@@ -488,7 +487,7 @@ print(cleaned_ages)
 
 # META {
 # META   "language": "python",
-# META   "language_group": "jupyter_python"
+# META   "language_group": "synapse_pyspark"
 # META }
 
 # CELL ********************
@@ -519,7 +518,7 @@ print(clean_scores)
 
 # META {
 # META   "language": "python",
-# META   "language_group": "jupyter_python"
+# META   "language_group": "synapse_pyspark"
 # META }
 
 # CELL ********************
@@ -548,5 +547,5 @@ print(clean_scores)
 
 # META {
 # META   "language": "python",
-# META   "language_group": "jupyter_python"
+# META   "language_group": "synapse_pyspark"
 # META }
