@@ -549,3 +549,390 @@ print(clean_scores)
 # META   "language": "python",
 # META   "language_group": "synapse_pyspark"
 # META }
+
+# CELL ********************
+
+numbers = [10, 20, 30, 40, 50]
+print(numbers[0],numbers[-1], len(numbers),numbers[0:3])
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+countries = ["Germany", "India", "France", "Spain"]
+
+print(countries[0], countries[2],countries[3])
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+numbers = [10, 20, 30]
+numbers.append(40)
+print(numbers)
+numbers.extend([50,60])
+print(numbers)
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+#Insert 30 between 20 and 40.
+numbers = [10, 20, 40, 50]
+numbers.insert(2,30)
+print(numbers)
+
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+#Remove the first 20.
+numbers = [10, 20, 30, 20, 40]
+numbers.remove(20)
+print(numbers)
+
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+#Use pop() to remove 30.
+numbers = [10, 20, 30, 40]
+removed_value= numbers.pop(2)
+print(numbers)
+print(removed_value)
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+#ascending order list
+
+scores = [85, 40, 92, 67, 55, 99]
+sorted_scores=sorted(scores)
+print(sorted_scores)
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+#create another list sorted in descending order.
+scores = [85, 40, 92, 67, 55, 99]
+sorted_scores=sorted(scores,reverse=True)
+print(sorted_scores)
+
+
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+raw_values = [
+    "10",
+    "25",
+    "invalid",
+    "50",
+    "100"
+]
+
+clean_values= [int(value) for value in raw_values if value.isdigit()]
+print(clean_values)
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+# create new list containing age>18
+users = [
+    {"id": 101, "age": 25},
+    {"id": 102, "age": 17},
+    {"id": 103, "age": 35},
+    {"id": 104, "age": 15},
+    {"id": 105, "age": 42}
+]
+adult_users = [user for user in users if user["age"] > 18]
+
+print(adult_users)
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+#Extract a column
+users = [
+    {"id": 101, "name": "John"},
+    {"id": 102, "name": "Alice"},
+    {"id": 103, "name": "Bob"}
+]
+
+names=[]
+for user in users:
+    name=user['name']
+    names.append(name)
+
+print(names)
+
+#using list comprehension
+names = [user["name"] for user in users]
+print(names)
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+#Calculate Total
+orders = [
+    {"order_id": 1, "amount": 100},
+    {"order_id": 2, "amount": 250},
+    {"order_id": 3, "amount": 75},
+    {"order_id": 4, "amount": 300}
+]
+
+order_total= sum([order['amount'] for order in orders])
+print(order_total)
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+#Create a new list containing only completed transactions and sum of amount
+
+transactions = [
+    {"id": 1, "amount": 100, "status": "completed"},
+    {"id": 2, "amount": 250, "status": "failed"},
+    {"id": 3, "amount": 150, "status": "completed"},
+    {"id": 4, "amount": 300, "status": "completed"},
+    {"id": 5, "amount": 50, "status": "failed"}
+]
+completed_transactions = [
+    transaction
+    for transaction in transactions
+    if transaction["status"] == "completed"
+]
+print(completed_transactions)
+
+amount_sum= sum([trans['amount'] for trans in completed_transactions])
+
+print(amount_sum)
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+#Duplicate Detection
+user_ids = [101, 102, 103, 101, 104, 102, 105]
+
+#duplicate_ids=[id for id in user_ids if user_ids.count(id)>1]
+duplicate_ids = list(set(
+    id for id in user_ids
+    if user_ids.count(id) > 1
+))
+
+print(duplicate_ids)
+
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+raw_transactions = [
+    {"id": "101", "amount": "100.50", "status": "completed"},
+    {"id": "102", "amount": "invalid", "status": "completed"},
+    {"id": "103", "amount": "250.00", "status": "failed"},
+    {"id": "104", "amount": "300.75", "status": "completed"},
+    {"id": "105", "amount": "50", "status": "completed"}
+]
+
+
+
+def clean_trans(trans):
+        try:
+            trans['id']= int(trans['id'])
+        
+        except(ValueError):
+            trans['id']= None
+    
+        try:
+            trans['amount']=float(trans['amount'])
+        except(ValueError):
+            trans['amount']=None
+        return trans
+
+        
+clean_transactions = [clean_trans(trans) for trans in raw_transactions]
+#print(clean_trans)
+
+clean_completed_trans = [trans for trans in clean_transactions if trans['status']=='completed']
+
+
+clean_completed_trans_amount =[trans for trans in clean_completed_trans if trans['amount'] is not None]
+
+transaction_amount=sum([trans['amount'] for trans in clean_completed_trans_amount])
+
+print(transaction_amount)
+print(clean_completed_trans_amount)
+
+valid_ids=[trans['id'] for trans in clean_completed_trans_amount]
+print(valid_ids)
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+transactions = [
+    {"id": 101, "amount": 100, "status": "completed"},
+    {"id": 102, "amount": 200, "status": "failed"},
+    {"id": 103, "amount": 300, "status": "completed"},
+    {"id": 104, "amount": 1500, "status": "completed"},
+    {"id": 105, "amount": 50, "status": "failed"},
+    {"id": 106, "amount": 400, "status": "completed"},
+]
+
+
+completed_transactions = [trans for trans in transactions if trans['status']=='completed']
+print(completed_transactions)
+
+total_amount =sum([trans['amount'] for trans in completed_transactions])
+print(total_amount)
+
+ids= [trans['id'] for trans in completed_transactions]
+print(ids)
+
+max_amount=0
+for item in completed_transactions:
+    if item['amount']>max_amount:
+        max_amount=item['amount'] 
+print(max_amount)
+highest_trans =[trans for trans in completed_transactions if trans['amount']==max_amount]
+print(highest_trans)
+
+amountMoreThan200 = [trans['amount'] for trans in completed_transactions if trans['amount']>=200]
+print(amountMoreThan200)
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# MARKDOWN ********************
+
+# What's the difference between:
+# 
+# append()
+# 
+# and:
+# 
+# extend()
+# 
+# ?
+# 
+# Q16
+# 
+# What's the difference between:
+# 
+# sort()
+# 
+# and:
+# 
+# sorted()
+# 
+# ?
+# 
+# Q17
+# 
+# What's the difference between:
+# 
+# remove()
+# 
+# and:
+# 
+# pop()
+# 
+# ?
+# 
+# Q18
+# 
+# What is the difference between a shallow copy and simply assigning:
+# 
+# b = a
+
+# MARKDOWN ********************
+
