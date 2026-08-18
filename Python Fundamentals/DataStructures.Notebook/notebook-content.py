@@ -72,6 +72,7 @@ setdefault()
 # Welcome to your new notebook
 # Type here in the cell editor to add code!
 '''
+Lists add and remove elements
 Print all customers.
 Print the first and last customer.
 Add "Michael".
@@ -94,6 +95,10 @@ print(customers.count('Anna'))
 # META   "language_group": "synapse_pyspark"
 # META }
 
+# MARKDOWN ********************
+
+# **Exercise 2**
+
 # CELL ********************
 
 '''
@@ -115,15 +120,15 @@ products = {
     "monitor": 300
 }
 
-print(products)
-print(products.keys())
-print(products.values())
+print("products are  ",products)
+print("dictinary keys ",products.keys())
+print("dictinary values ",products.values())
 products['headphones']=150
-print(products)
-print(sum(products.values()))
+print("products are  ",products)
+print("sum of products cost is  ",sum(products.values()))
 
 item= max(products, key=products.get)
-print(item)
+print("Costliest item ",item)
 
 # METADATA ********************
 
@@ -131,6 +136,10 @@ print(item)
 # META   "language": "python",
 # META   "language_group": "synapse_pyspark"
 # META }
+
+# MARKDOWN ********************
+
+# **Exercise 3**
 
 # CELL ********************
 
@@ -163,6 +172,10 @@ print(countries)
 # META   "language": "python",
 # META   "language_group": "synapse_pyspark"
 # META }
+
+# MARKDOWN ********************
+
+# **Exercise 4**
 
 # CELL ********************
 
@@ -203,6 +216,10 @@ print(employees)
 # META   "language_group": "synapse_pyspark"
 # META }
 
+# MARKDOWN ********************
+
+# **Exercise 5**
+
 # CELL ********************
 
 '''
@@ -221,7 +238,7 @@ print(sum(transactions)/len(transactions))
 print(min(transactions))
 print(max(transactions))
 trans_above_300 = [trans for trans in transactions if trans >300]
-print(trans_above_300)
+print("transactions above 300 ",trans_above_300)
 
 # METADATA ********************
 
@@ -229,6 +246,10 @@ print(trans_above_300)
 # META   "language": "python",
 # META   "language_group": "synapse_pyspark"
 # META }
+
+# MARKDOWN ********************
+
+# **Exercise 6**
 
 # CELL ********************
 
@@ -265,6 +286,10 @@ get_customer_name(110)
 # META   "language_group": "synapse_pyspark"
 # META }
 
+# MARKDOWN ********************
+
+# **Exercise 7**
+
 # CELL ********************
 
 '''
@@ -284,6 +309,10 @@ print(unique_orders)
 # META   "language": "python",
 # META   "language_group": "synapse_pyspark"
 # META }
+
+# MARKDOWN ********************
+
+# **Exercise 8**
 
 # CELL ********************
 
@@ -312,6 +341,10 @@ print(products_dict)
 # META   "language_group": "synapse_pyspark"
 # META }
 
+# MARKDOWN ********************
+
+# **Exercise 9**
+
 # CELL ********************
 
 
@@ -333,6 +366,10 @@ print(invalid_transactions)
 # META   "language": "python",
 # META   "language_group": "synapse_pyspark"
 # META }
+
+# MARKDOWN ********************
+
+# **Exercise 10**
 
 # CELL ********************
 
@@ -363,11 +400,11 @@ print(num_of_duplicates)
 
 # MARKDOWN ********************
 
-# Intermediate
+# **Exercise 11**
 
 # CELL ********************
 
-'''Calculate total spending per customer.
+'''Calculate total spending per customer for the below set
 {
     "C001": 550,
     "C002": 300,
@@ -403,6 +440,10 @@ print(totals)
 # META   "language_group": "synapse_pyspark"
 # META }
 
+# MARKDOWN ********************
+
+# **Exercise 12**
+
 # CELL ********************
 
 # Customer order count
@@ -432,6 +473,10 @@ print(order_count)
 # META   "language": "python",
 # META   "language_group": "synapse_pyspark"
 # META }
+
+# MARKDOWN ********************
+
+# **Exercise 13**
 
 # CELL ********************
 
@@ -476,6 +521,10 @@ print("Customer who spent the most",max_spend)
 # META   "language_group": "synapse_pyspark"
 # META }
 
+# MARKDOWN ********************
+
+# **Exercise 14**
+
 # CELL ********************
 
 '''Find:
@@ -515,6 +564,10 @@ print(less_inventory)
 # META   "language_group": "synapse_pyspark"
 # META }
 
+# MARKDOWN ********************
+
+# **Exercise 15**
+
 # CELL ********************
 
 '''create {
@@ -549,6 +602,10 @@ print(dept_dict)
 # META   "language": "python",
 # META   "language_group": "synapse_pyspark"
 # META }
+
+# MARKDOWN ********************
+
+# **Exercise 16**
 
 # CELL ********************
 
@@ -590,6 +647,10 @@ print(allcustomers)
 # META   "language_group": "synapse_pyspark"
 # META }
 
+# MARKDOWN ********************
+
+# **Exercise 17**
+
 # CELL ********************
 
 ''' Find:
@@ -616,6 +677,10 @@ print(totaluniquerecords)
 # META   "language": "python",
 # META   "language_group": "synapse_pyspark"
 # META }
+
+# MARKDOWN ********************
+
+# **Exercise 18**
 
 # CELL ********************
 
@@ -651,6 +716,10 @@ print("Deduplicated:", deduplicated)
 # META   "language": "python",
 # META   "language_group": "synapse_pyspark"
 # META }
+
+# MARKDOWN ********************
+
+# **Exercise 19**
 
 # CELL ********************
 
@@ -688,6 +757,10 @@ print(trans_dict)
 # META   "language_group": "synapse_pyspark"
 # META }
 
+# MARKDOWN ********************
+
+# **Exercise 20**
+
 # CELL ********************
 
 ''' Customer 360 dictionary
@@ -724,7 +797,7 @@ print(customer_360)
 
 # MARKDOWN ********************
 
-# Advanced
+# **Exercise 21**
 
 # CELL ********************
 
@@ -768,6 +841,10 @@ print(enriched_orders)
 # META   "language": "python",
 # META   "language_group": "synapse_pyspark"
 # META }
+
+# MARKDOWN ********************
+
+# **Exercise 22**
 
 # CELL ********************
 
@@ -837,6 +914,10 @@ print("valid customers are  ",valid_records)
 # META   "language_group": "synapse_pyspark"
 # META }
 
+# MARKDOWN ********************
+
+# **Exercise 23**
+
 # CELL ********************
 
 '''
@@ -866,6 +947,10 @@ print(deduplicated)
 # META   "language": "python",
 # META   "language_group": "synapse_pyspark"
 # META }
+
+# MARKDOWN ********************
+
+# **Exercise 24**
 
 # CELL ********************
 
@@ -901,6 +986,10 @@ print(product_sales)
 # META   "language": "python",
 # META   "language_group": "synapse_pyspark"
 # META }
+
+# MARKDOWN ********************
+
+# **Exercise 25**
 
 # CELL ********************
 
@@ -971,6 +1060,10 @@ print("highest paid employees are " ,highest_paid)
 # META   "language_group": "synapse_pyspark"
 # META }
 
+# MARKDOWN ********************
+
+# **Exercise 26**
+
 # CELL ********************
 
 #Multi-source reconciliation
@@ -1015,6 +1108,7 @@ print(master)
 
 # MARKDOWN ********************
 
+# **Exercise 27**
 # **The pattern to remember ⭐
 # When you want a dictionary of lists:
 # data = {}
@@ -1083,6 +1177,10 @@ print(customer_report)
 # META   "language_group": "synapse_pyspark"
 # META }
 
+# MARKDOWN ********************
+
+# **Exercise 28**
+
 # CELL ********************
 
 '''Build a mini ETL pipeline
@@ -1147,6 +1245,10 @@ print("Rejected records:", reject)
 # META   "language_group": "synapse_pyspark"
 # META }
 
+# MARKDOWN ********************
+
+# **Exercise 29**
+
 # CELL ********************
 
 ''' Incremental processing
@@ -1170,6 +1272,334 @@ print("new ids are ",new_ids)
 
 processed_ids.update(new_ids)
 print("processed ids are ", processed_ids)
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# MARKDOWN ********************
+
+# **Exercise 30**
+
+# CELL ********************
+
+''' Combine columns
+columns = ["id", "name", "department"]
+values = [101, "Anna", "Data"]
+
+Create:
+{ "id": 101, "name": "Anna", "department": "Data" }
+zip() in Python is used to combine two or more lists (or other iterables) element-by-element.'''
+
+columns = ["id", "name", "department"]
+values = [101, "Anna", "Data"]
+result=zip(columns,values)
+print(list(result))
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# MARKDOWN ********************
+
+# **Exercise 31**
+
+# CELL ********************
+
+'''Create employee records
+
+
+Create:
+
+[
+    {"name": "Anna", "department": "Data", "salary": 70000},
+    ...
+]
+
+Use zip().'''
+
+
+names = ["Anna", "Mark", "John", "Sarah"]
+departments = ["Data", "Engineering", "HR", "Data"]
+salaries = [70000, 80000, 60000, 75000]
+
+employees=[]
+
+
+
+for name, department,salary in zip(names,departments,salaries):
+    employees.append({
+        'name':name,
+        'department':department,
+        'salary':salary
+    })
+
+print(employees)  
+
+
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# MARKDOWN ********************
+
+# **Exercise 33**
+
+# CELL ********************
+
+'''Compare 2 datasets
+Using zip():
+
+compare corresponding values
+identify changed values
+calculate the difference '''
+
+
+system_a = [100, 200, 300, 400] 
+system_b = [100, 250, 300, 450]
+
+print(list(zip(system_a, system_b)))
+
+for a,b in zip(system_a, system_b):
+    if a==b:
+        print("no change in value",a,b)
+    else:
+        print("change in value",a,b)
+        print("difference is ",abs(a - b))
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# MARKDOWN ********************
+
+# **Exercise 34**
+
+# CELL ********************
+
+''' Detect mismatched records
+ids = [101, 102, 103, 104]
+names = ["Anna", "Mark", "John", "Sarah"]
+departments = ["Data", "Data", "HR", "Engineering"]
+
+Create records and then find employees belonging to the "Data" department.'''
+
+ids = [101, 102, 103, 104]
+names = ["Anna", "Mark", "John", "Sarah"]
+departments = ["Data", "Data", "HR", "Engineering"]
+employees=[]
+for id,name, department in zip(ids,names,departments):
+    employees.append({
+        'id':id,
+        'name':name,
+        'department':department
+    })
+
+print("All employees are ",employees)
+
+data_employees=[]
+
+for employee in employees:
+    if employee['department']=='Data':
+        data_employees.append(employee)
+
+print("Data employees are ",data_employees)
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# MARKDOWN ********************
+
+# **Exercise 35**
+
+# CELL ********************
+
+''' Add row numbers
+transactions = [100, 250, 500, 750]
+
+Produce:
+
+1: 100
+2: 250
+3: 500
+4: 750 '''
+
+transactions = [100, 250, 500, 750]
+for i,amount in enumerate(transactions,1):
+    print(i,amount)
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# MARKDOWN ********************
+
+# **Exercise 36**
+
+# CELL ********************
+
+'''Find invalid records with row numbers
+transactions = [100, -50, 200, -10, 500]
+
+Return:
+
+row 2 → -50
+row 4 → -10'''
+
+transactions = [100, -50, 200, -10, 500]
+
+for i,amount in enumerate(transactions,1):
+    if amount <0:
+        print(i, amount)
+
+
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# MARKDOWN ********************
+
+# **Exercise 37**
+
+# CELL ********************
+
+'''  records = [
+    {"id": "C001", "name": "Anna"},
+    {"id": "C002", "name": "Mark"},
+    {"id": "C003", "name": "John"}
+]
+
+Add:
+
+"source_row": 1
+
+to the first record, 2 to the second, etc.'''
+records = [
+    {"id": "C001", "name": "Anna"},
+    {"id": "C002", "name": "Mark"},
+    {"id": "C003", "name": "John"}
+]
+
+for i, record in enumerate(records,start=1):
+    record["source_row"] = i
+
+print(records)
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# MARKDOWN ********************
+
+# **Exercise 38**
+
+# CELL ********************
+
+'''  Filter valid transactions
+amounts = [100, -20, 300, 0, 500, -50]
+
+Create a list containing only positive amounts.'''
+
+
+amounts = [100, -20, 300, 0, 500, -50]
+
+valid_transactions = [amount for amount in amounts if amount>0]
+print(valid_transactions)
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# MARKDOWN ********************
+
+# **Exercise 39**
+
+# CELL ********************
+
+''' Transform amounts
+
+Convert:
+
+amounts = [100, 200, 300]
+
+into amounts including 19% VAT.
+
+Expected:
+
+119
+238
+357'''
+
+amounts = [100, 200, 300]
+vat_included =[amount+amount*.19 for amount in amounts]
+print(vat_included)
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# MARKDOWN ********************
+
+# **Exercise 40**
+
+# CELL ********************
+
+''' amounts = [50, 150, 300, 700, 1000]
+
+Return the amounts greater than 200 after adding 19% VAT.'''
+amounts = [50, 150, 300, 700, 1000]
+new_amounts = [amount+amount*.19 for amount in amounts]
+print(new_amounts)
+
+new_valid_amounts = [amount for amount in new_amounts if amount > 200]
+print(new_valid_amounts)
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# MARKDOWN ********************
+
+# **Exercise 41**
+
+# CELL ********************
+
 
 # METADATA ********************
 
