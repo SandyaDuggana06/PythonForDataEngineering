@@ -774,7 +774,7 @@ print(completed_transactions)
 
 amount_sum= sum([trans['amount'] for trans in completed_transactions])
 
-print(amount_sum)
+print("total amount is ",amount_sum)
 
 # METADATA ********************
 
