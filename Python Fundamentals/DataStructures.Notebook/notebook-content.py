@@ -2521,7 +2521,603 @@ Return:
     "amount": 250.50
 }'''
 
+transaction={
+    "id": "101",
+    "amount": "250.50"
+}
 
+def clean_transaction(transaction):
+        clean_trans={     "id":int(transaction['id']),
+                        "amount":float(transaction['amount'])}
+        return clean_trans
+clean_transaction(transaction)
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# MARKDOWN ********************
+
+# **Exercise 62**
+
+# CELL ********************
+
+'''
+Create:
+
+def convert_amount(value):
+    ...
+
+Rules:
+
+valid number → return float
+invalid value → return None
+
+Test:
+
+"100"
+"250.50"
+"invalid"
+"300"
+'''
+
+def convert_amount(value):
+    try:
+        return float(value)
+    except(ValueError):
+        return None
+
+print(convert_amount("100"))
+print(convert_amount("250.50"))
+print(convert_amount("invalid"))
+print(convert_amount("300"))
+
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# MARKDOWN ********************
+
+# **Excercise 63**
+
+# CELL ********************
+
+''' 
+def is_valid_transaction(transaction):
+    ...
+
+A transaction is valid when:
+
+ID exists
+amount exists
+amount > 0
+
+Return True or False.'''
+
+def is_valid_transaction(transaction):
+    if (
+        transaction.get("id") is not None
+        and transaction.get("amount") is not None
+        and transaction["amount"] > 0
+    ):
+        return True
+    return False
+
+print(is_valid_transaction({"id": 101, "amount": 250}))
+
+
+print(is_valid_transaction({"id": None, "amount": 250}))
+
+
+print(is_valid_transaction({"id": 101, "amount": 0}))
+
+
+print(is_valid_transaction({"id": 101, "amount": -50}))
+
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# MARKDOWN ********************
+
+# **Excercise 64**
+
+# CELL ********************
+
+''' Raw transaction cleaning
+transactions = [
+    {"id": "101", "amount": "100.50"},
+    {"id": "102", "amount": "invalid"},
+    {"id": "103", "amount": "250"},
+    {"id": "104", "amount": None}
+]
+
+Produce:
+
+valid_records = [...]
+invalid_records = [...]
+
+Use try/except.'''
+
+transactions = [
+    {"id": "101", "amount": "100.50"},
+    {"id": "102", "amount": "invalid"},
+    {"id": "103", "amount": "250"},
+    {"id": "104", "amount": None}
+]
+valid_records=[]
+invalid_records=[]
+for transaction in transactions:
+    try:
+        transaction['amount']=float(transaction['amount'])
+        valid_records.append(transaction)
+    except(ValueError,TypeError):
+        invalid_records.append(transaction)
+
+print("valid records are ", valid_records)
+print("invalid records are ",invalid_records)
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# MARKDOWN ********************
+
+# **Exercise 65**
+
+# CELL ********************
+
+
+'''
+Convert:
+
+ID → int
+amount → float
+quantity → int
+
+Invalid records should be rejected. '''
+
+records = [
+    {"id": "1", "amount": "100", "quantity": "2"},
+    {"id": "2", "amount": "invalid", "quantity": "3"},
+    {"id": "3", "amount": "250", "quantity": "invalid"}
+]
+valid_records = []
+invalid_records = []
+
+for record in records:
+    try:
+        record['id']=int(record['id'])
+        record['amount']=float(record['amount'])
+        record['quantity']=int(record['quantity'])
+        valid_records.append(record)
+    except(ValueError,TypeError):
+        invalid_records.append(record)
+
+print(valid_records)
+print(invalid_records)
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# MARKDOWN ********************
+
+# **Excercise 66**
+
+# CELL ********************
+
+''' Build a lookup
+customers = [
+    {"id": "C001", "name": "Anna"},
+    {"id": "C002", "name": "Mark"},
+    {"id": "C003", "name": "John"}
+]
+
+Transform into:
+
+{
+    "C001": "Anna",
+    "C002": "Mark",
+    "C003": "John"
+}
+
+Then use the dictionary to enrich:
+
+orders = [
+    {"id": "O001", "customer_id": "C001", "amount": 500},
+    {"id": "O002", "customer_id": "C999", "amount": 100}
+]
+
+Unknown customers should become "UNKNOWN". ''' 
+
+
+customers = [
+    {"id": "C001", "name": "Anna"},
+    {"id": "C002", "name": "Mark"},
+    {"id": "C003", "name": "John"}
+]
+
+orders = [
+    {"id": "O001", "customer_id": "C001", "amount": 500},
+    {"id": "O002", "customer_id": "C999", "amount": 100}
+]
+
+
+customer_lookup={}
+
+for customer in customers:
+    customer_lookup[customer['id']]=customer['name']
+
+print(customer_lookup)
+
+enriched_orders = []
+
+for order in orders:
+    customer_id=order['customer_id']
+    enriched_order={
+        "id": order["id"],
+        "customer_id": customer_id,
+        "customer_name": customer_lookup.get(customer_id, "UNKNOWN"),
+        "amount": order["amount"]
+    }
+    
+    enriched_orders.append(enriched_order)
+
+print(enriched_orders)
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# MARKDOWN ********************
+
+# **Excercise 67**
+
+# CELL ********************
+
+''' transactions = [
+    {"customer": "C001", "amount": 100},
+    {"customer": "C002", "amount": 200},
+    {"customer": "C001", "amount": 300},
+    {"customer": "C002", "amount": 400},
+    {"customer": "C003", "amount": 500}
+]
+
+Create:
+
+{
+    "C001": [100, 300],
+    "C002": [200, 400],
+    "C003": [500]
+}
+
+Then calculate total amount per customer.'''
+
+transactions = [
+    {"customer": "C001", "amount": 100},
+    {"customer": "C002", "amount": 200},
+    {"customer": "C001", "amount": 300},
+    {"customer": "C002", "amount": 400},
+    {"customer": "C003", "amount": 500}
+]
+
+cust_amount={}
+
+for trans in transactions:
+    customer=trans['customer']
+    amount=trans['amount']
+    if customer not in cust_amount:
+        cust_amount[customer]=[]
+    cust_amount[customer].append(amount)
+
+print(cust_amount)
+
+total={}
+
+for customer, amounts in cust_amount.items():
+    total[customer] = sum(amounts)
+
+print(total)
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# MARKDOWN ********************
+
+# Exercise 68
+
+# CELL ********************
+
+''' source_a = [
+    {"id": 1, "amount": 100},
+    {"id": 2, "amount": 200},
+    {"id": 3, "amount": 300}
+]
+
+source_b = [
+    {"id": 1, "amount": 100},
+    {"id": 2, "amount": 250},
+    {"id": 4, "amount": 400}
+]
+
+Find:
+
+records present in both
+records missing from B
+records missing from A
+records whose amount changed'''
+
+source_a = [
+    {"id": 1, "amount": 100},
+    {"id": 2, "amount": 200},
+    {"id": 3, "amount": 300}
+]
+
+source_b = [
+    {"id": 1, "amount": 100},
+    {"id": 2, "amount": 250},
+    {"id": 4, "amount": 400}
+]
+
+a_lookup = {record["id"]: record for record in source_a}
+b_lookup = {record["id"]: record for record in source_b}
+
+print("a lookup is ",a_lookup)
+print("b lookup is ",b_lookup)
+
+both = set(a_lookup) & set(b_lookup)
+print("records present in both ", both)
+
+missing_from_b = set(a_lookup) - set(b_lookup)
+print("records missing from b ", missing_from_b)
+
+missing_from_a = set(b_lookup) - set(a_lookup)
+print("records missing from a ", missing_from_a)
+
+
+changed = []
+
+for record_id in set(a_lookup) & set(b_lookup):
+    if a_lookup[record_id]["amount"] != b_lookup[record_id]["amount"]:
+        changed.append(record_id)
+
+print(changed)
+
+
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# MARKDOWN ********************
+
+# **Excercise 69**
+
+# CELL ********************
+
+''' processed_ids = {1, 2, 3, 4}
+
+incoming_records = [
+    {"id": 3, "amount": 100},
+    {"id": 4, "amount": 200},
+    {"id": 5, "amount": 300},
+    {"id": 6, "amount": 400}
+]
+
+Return only new records.
+
+Then update processed_ids.'''
+processed_ids = {1, 2, 3, 4}
+incoming_records = [
+    {"id": 3, "amount": 100},
+    {"id": 4, "amount": 200},
+    {"id": 5, "amount": 300},
+    {"id": 6, "amount": 400}
+]
+lookup = {record["id"]: record for record in incoming_records}
+print(lookup)
+
+new_records=[]
+
+for record in incoming_records:
+    if record["id"] not in processed_ids:
+        new_records.append(record)
+
+print(new_records)
+
+for record in new_records:
+    processed_ids.add(record["id"])
+
+print("Updated processed IDs:")
+print(processed_ids)
+
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# MARKDOWN ********************
+
+# **Excercise 60**
+
+# CELL ********************
+
+'''Input:
+
+orders = [
+    {"id": 1, "customer": "C001", "amount": "100"},
+    {"id": 2, "customer": "C002", "amount": "-50"},
+    {"id": 3, "customer": "C001", "amount": "300"},
+    {"id": 2, "customer": "C002", "amount": "-50"},
+    {"id": 4, "customer": "C003", "amount": "invalid"}
+]
+
+Build:
+
+Extract
+   ↓
+Validate
+   ↓
+Deduplicate
+   ↓
+Transform
+   ↓
+Aggregate
+
+Produce:
+
+{
+    "input_records": ...,
+    "valid_records": ...,
+    "invalid_records": ...,
+    "duplicate_records": ...,
+    "total_revenue": ...,
+    "unique_customers": ...,
+    "revenue_by_customer": ...
+}
+
+Constraint:
+
+Use only Python built-in data structures.'''
+
+orders = [
+    {"id": 1, "customer": "C001", "amount": "100"},
+    {"id": 2, "customer": "C002", "amount": "-50"},
+    {"id": 3, "customer": "C001", "amount": "300"},
+    {"id": 2, "customer": "C002", "amount": "-50"},
+    {"id": 4, "customer": "C003", "amount": "invalid"}
+]
+
+
+# -------------------------
+# Extract
+# -------------------------
+
+input_records = len(orders)
+
+
+# -------------------------
+# Validate
+# -------------------------
+
+valid_records = []
+invalid_records = []
+
+for order in orders:
+    try:
+        amount = float(order["amount"])
+
+        if amount <= 0:
+            invalid_records.append(order)
+        else:
+            valid_records.append(order)
+
+    except (ValueError, TypeError):
+        invalid_records.append(order)
+
+
+# -------------------------
+# Deduplicate
+# -------------------------
+
+seen_ids = set()
+deduplicated_records = []
+duplicate_records = []
+
+for order in valid_records:
+
+    if order["id"] in seen_ids:
+        duplicate_records.append(order)
+    else:
+        seen_ids.add(order["id"])
+        deduplicated_records.append(order)
+
+
+# -------------------------
+# Transform
+# -------------------------
+
+clean_records = []
+
+for order in deduplicated_records:
+    clean_order = {
+        "id": int(order["id"]),
+        "customer": order["customer"],
+        "amount": float(order["amount"])
+    }
+
+    clean_records.append(clean_order)
+
+
+# -------------------------
+# Aggregate
+# -------------------------
+
+total_revenue = 0
+unique_customers = set()
+revenue_by_customer = {}
+
+for order in clean_records:
+
+    customer = order["customer"]
+    amount = order["amount"]
+
+    total_revenue += amount
+
+    unique_customers.add(customer)
+
+    if customer not in revenue_by_customer:
+        revenue_by_customer[customer] = 0
+
+    revenue_by_customer[customer] += amount
+
+
+# -------------------------
+# Final report
+# -------------------------
+
+report = {
+    "input_records": input_records,
+    "valid_records": len(valid_records),
+    "invalid_records": len(invalid_records),
+    "duplicate_records": len(duplicate_records),
+    "total_revenue": total_revenue,
+    "unique_customers": len(unique_customers),
+    "revenue_by_customer": revenue_by_customer
+}
+
+print(report)
 
 # METADATA ********************
 
