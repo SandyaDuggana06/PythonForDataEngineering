@@ -1600,6 +1600,928 @@ print(new_valid_amounts)
 
 # CELL ********************
 
+''' Clean strings 
+countries = [
+    " germany ",
+    "INDIA",
+    " France ",
+    "germany"
+]
+
+Create:
+
+["Germany", "India", "France", "Germany"]
+
+Use a list comprehension.'''
+
+countries = [
+    " germany ",
+    "INDIA",
+    " France ",
+    "germany"
+]
+clean_countries = [country.title() for country in countries]
+print(clean_countries)
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# MARKDOWN ********************
+
+# **Exercise 42**
+
+# CELL ********************
+
+''' Extract dictionary values
+transactions = [
+    {"id": 1, "amount": 100},
+    {"id": 2, "amount": 250},
+    {"id": 3, "amount": 500}
+]
+
+Create a list containing only the amounts.
+Pattern to remember ⭐
+
+For a list of dictionaries, to extract one field:
+
+[field["key"] for field in list]
+'''
+
+transactions = [
+    {"id": 1, "amount": 100},
+    {"id": 2, "amount": 250},
+    {"id": 3, "amount": 500}
+]
+amount_list=[]
+for transaction in transactions:
+    amount=transaction['amount']
+    amount_list.append(amount)
+
+print(amount_list)
+
+# list comprehension
+amount_list = [transaction["amount"] for transaction in transactions]
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# MARKDOWN ********************
+
+# **Exercise 43**
+
+# CELL ********************
+
+''' Flatten a list
+data = [
+    [1, 2, 3],
+    [4, 5],
+    [6, 7, 8]
+]
+
+Produce:
+
+[1, 2, 3, 4, 5, 6, 7, 8]'''
+
+data = [
+    [1, 2, 3],
+    [4, 5],
+    [6, 7, 8]
+]
+
+flatten_list=[]
+
+for l in data:
+    for num in l:
+        flatten_list.append(num)
+
+print(flatten_list)
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# MARKDOWN ********************
+
+# **Exercise 44**
+
+# CELL ********************
+
+'''Flatten transaction batches
+batches = [
+    [{"id": 1}, {"id": 2}],
+    [{"id": 3}, {"id": 4}],
+    [{"id": 5}]
+]
+
+Create one flat list containing all records.'''
+
+
+batches = [
+    [{"id": 1}, {"id": 2}],
+    [{"id": 3}, {"id": 4}],
+    [{"id": 5}]
+]
+
+flatten_list=[]
+for batch in batches:
+    for nested_batch in batch:
+        flatten_list.append(nested_batch)
+
+print(flatten_list)
+
+result ={'id':[]}
+for output in flatten_list:
+    result['id'].append(output['id'])
+
+print(result)
+#flatten_list = [record for batch in batches for record in batch]
+
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# MARKDOWN ********************
+
+# **Exercise 45**
+
+# CELL ********************
+
+''' Extract nested values
+customers = [
+    {
+        "id": "C001",
+        "orders": [
+            {"id": "O001", "amount": 100},
+            {"id": "O002", "amount": 200}
+        ]
+    },
+    {
+        "id": "C002",
+        "orders": [
+            {"id": "O003", "amount": 500}
+        ]
+    }
+]
+
+Create a list of all order amounts.
+
+Expected:
+
+[100, 200, 500] '''
+
+customers = [
+    {
+        "id": "C001",
+        "orders": [
+            {"id": "O001", "amount": 100},
+            {"id": "O002", "amount": 200}
+        ]
+    },
+    {
+        "id": "C002",
+        "orders": [
+            {"id": "O003", "amount": 500}
+        ]
+    }
+]
+
+amount=[]
+for customer in customers:
+    order_dict=customer['orders']
+    for each in order_dict:
+        amount.append(each['amount'])
+
+print(amount)
+
+''' amount = [
+    order["amount"]
+    for customer in customers
+    for order in customer["orders"]
+] '''
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# MARKDOWN ********************
+
+# **Exercise 46**
+
+# CELL ********************
+
+'''  Create price lookup
+products = [
+    ("Laptop", 1200),
+    ("Mouse", 25),
+    ("Keyboard", 80)
+]
+
+Create:
+
+{
+    "Laptop": 1200,
+    "Mouse": 25,
+    "Keyboard": 80
+}
+
+Use a dictionary comprehension.'''
+
+products = [
+    ("Laptop", 1200),
+    ("Mouse", 25),
+    ("Keyboard", 80)
+]
+
+dict={}
+
+for product, price in products:
+    dict[product]= price
+
+print(dict)
+
+# dictionary comprehension version is {key: value for item in iterable}
+
+price_lookup = {
+    product: price
+    for product, price in products
+}
+
+print(price_lookup)
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# MARKDOWN ********************
+
+# **Exercise 47**
+
+# CELL ********************
+
+'''Filter dictionary
+prices = {
+    "Laptop": 1200,
+    "Mouse": 25,
+    "Keyboard": 80,
+    "Monitor": 300
+}
+
+Create a dictionary containing only products costing more than 100.
+
+{key: value for key, value in dictionary.items() if condition}'''
+
+prices = {
+    "Laptop": 1200,
+    "Mouse": 25,
+    "Keyboard": 80,
+    "Monitor": 300
+}
+
+
+updated_products={}
+
+for product,price in prices.items():
+    if(price>100):
+        updated_products[product]=price
+
+print(updated_products)
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# MARKDOWN ********************
+
+# **Exercise 48**
+
+# CELL ********************
+
+'''Transform dictionary values
+
+Increase every price by 10%. 
+pattern to remember
+{
+    key: transformed_value
+    for key, value in dictionary.items()
+}'''
+
+prices = {
+    "Laptop": 1200,
+    "Mouse": 25,
+    "Keyboard": 80,
+    "Monitor": 300
+}
+
+
+updated_prices ={ product:price+price*.10 for product, price in prices.items()}
+
+print(updated_prices)
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# MARKDOWN ********************
+
+# **Exercise 49**
+
+# CELL ********************
+
+'''Reverse a dictionary
+departments = {
+    "E01": "Data",
+    "E02": "HR",
+    "E03": "Engineering"
+}
+
+Create:
+
+{
+    "Data": "E01",
+    "HR": "E02",
+    "Engineering": "E03"
+}'''
+
+departments = {
+    "E01": "Data",
+    "E02": "HR",
+    "E03": "Engineering"
+}
+
+reverse_departments={ dept:emp for emp,dept in departments.items()}
+print(reverse_departments)
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# MARKDOWN ********************
+
+# **Exercise 50**
+
+# CELL ********************
+
+'''Check for invalid data
+amounts = [100, 200, -50, 300]
+
+Use any() to determine whether at least one amount is invalid.'''
+
+amounts = [100, 200, -50, 300]
+
+valid_amounts=any([num<0 for num in amounts])
+print(valid_amounts)
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# MARKDOWN ********************
+
+# **Exercise 51**
+
+# CELL ********************
+
+''' Validate all records
+amounts = [100, 200, 300, 500]
+
+Use all() to determine whether every amount is positive.'''
+
+amounts = [100, 200, 300, 500]
+valid_amounts=all([num>0 for num in amounts])
+print(valid_amounts)
+
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# MARKDOWN ********************
+
+# **Exercise 52**
+
+# CELL ********************
+
+''' Data-quality validation
+records = [
+    {"id": "C001", "amount": 100},
+    {"id": "C002", "amount": 200},
+    {"id": None, "amount": 300}
+]
+
+Use any() to determine whether any record has a missing ID.
+
+Use all() to determine whether every record has a valid ID. '''
+
+records = [
+    {"id": "C001", "amount": 100},
+    {"id": "C002", "amount": 200},
+    {"id": None, "amount": 300}
+]
+
+
+valid= any(record['id'] is None for record in records)
+print(valid)
+
+valid_all=all(record['id'] is not None for record in records)
+print(valid_all)
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# MARKDOWN ********************
+
+# **Exercise 53**
+
+# CELL ********************
+
+'''Sort transactions
+transactions = [
+    {"id": 1, "amount": 500},
+    {"id": 2, "amount": 100},
+    {"id": 3, "amount": 750}
+]
+
+Sort by amount ascending.
+
+Then sort descending.
+
+Pattern to memorize
+
+For dictionaries:
+
+sorted(
+    data,
+    key=lambda x: x["field"]
+)
+
+For tuples:
+
+sorted(
+    data,
+    key=lambda x: x[1]
+)
+
+And descending:
+
+sorted(
+    data,
+    key=lambda x: x["field"],
+    reverse=True
+)
+
+The key idea is:
+
+sorted() = sort
+key= = what should I sort by?
+lambda = a quick function telling Python what that value is
+'''
+transactions = [
+    {"id": 1, "amount": 500},
+    {"id": 2, "amount": 100},
+    {"id": 3, "amount": 750}
+]
+result= sorted(transactions, key= lambda trans:trans['amount'])
+print(result)
+
+desc_result= sorted(transactions, key= lambda trans:trans['amount'], reverse= True)
+print(desc_result)
+
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# MARKDOWN ********************
+
+# **Exercise 54**
+
+# CELL ********************
+
+#Sort employees by salary and identify the highest-paid employee.
+employees = [
+    {"name": "Anna", "salary": 70000},
+    {"name": "Mark", "salary": 85000},
+    {"name": "John", "salary": 60000}
+]
+
+result= sorted(employees, key= lambda emp:emp['salary'], reverse=True)
+
+print(result)
+
+print("highest paid employee is ", result[0]['name'])
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# MARKDOWN ********************
+
+# **Exercise 55**
+
+# CELL ********************
+
+''' 
+Sort by:
+
+department
+salary descending'''
+
+employees = [
+    {"name": "Anna", "department": "Data", "salary": 70000},
+    {"name": "Mark", "department": "Engineering", "salary": 80000},
+    {"name": "John", "department": "Data", "salary": 85000},
+    {"name": "Sarah", "department": "Data", "salary": 65000}
+]
+
+sort = sorted(employees, key= lambda emp:(-emp['salary'],emp['department']), reverse= True)
+print(sort)
+
+
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# MARKDOWN ********************
+
+# **Exercise 56**
+
+# CELL ********************
+
+'''
+Tuple unpacking
+employee = ("E001", "Anna", "Data", 70000)
+
+Unpack into:
+
+employee_id
+name
+department
+salary
+'''
+employee = ("E001", "Anna", "Data", 70000)
+employee_id, name, department, salary = employee
+print(employee_id)
+print(name)
+print(department)
+print(salary)
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# MARKDOWN ********************
+
+# **Exercise 57**
+
+# CELL ********************
+
+''' columns = ["id", "name", "department", "salary", "country"]
+
+Unpack into:
+
+first
+second
+*remaining
+
+Determine the result.'''
+columns = ["id", "name", "department", "salary", "country"]
+first,second,*remaining =columns
+print(first)
+print(second)
+print(remaining)
+
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# MARKDOWN ********************
+
+# **Exercise 58**
+
+# CELL ********************
+
+#Create one dictionary containing all fields using **.
+
+customer = {
+    "id": "C001",
+    "name": "Anna"
+}
+
+location = {
+    "country": "Germany"
+}
+
+all_info={**customer,**location}
+print(all_info)
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# MARKDOWN ********************
+
+# **Exercise 59**
+
+# CELL ********************
+
+''' 
+
+The four structures you should recognize
+List of dictionaries
+[
+    {"id": 1},
+    {"id": 2}
+]
+
+Usually processed with:
+
+for record in records:
+Dictionary of dictionaries
+{
+    "C001": {"name": "Anna"},
+    "C002": {"name": "Mark"}
+}
+
+Usually processed with:
+
+for key, value in data.items():
+Dictionary containing a list
+{
+    "orders": [100, 200, 300]
+}
+
+Access:
+
+data["orders"]
+Dictionary → list → dictionary
+{
+    "orders": [
+        {"id": 1, "amount": 100},
+        {"id": 2, "amount": 200}
+    ]
+}
+
+Loop:
+
+for order in data["orders"]:
+    print(order["amount"])
+🧠 The main skill
+
+When working with nested data, always ask:
+
+"What type am I looking at right now?"
+
+For example:
+
+customers[0]["orders"][1]["amount"]
+customers          → list
+customers[0]       → dictionary
+["orders"]         → list
+[1]                → dictionary
+["amount"]         → number
+
+Once you can identify the type at each level, nested data becomes much easier to work with.
+
+Pattern to remember
+
+For nested customer → orders → amount:
+
+customer_id: sum(order["amount"] for order in customer["orders"])
+
+This is a very useful pattern for calculating total spending/revenue per customer.
+
+Find:
+
+all customer names
+all order IDs
+all order amounts
+total revenue
+total revenue per customer
+highest-value order'''
+
+
+customers = {
+    "C001": {
+        "name": "Anna",
+        "country": "Germany",
+        "orders": [
+            {"id": "O001", "amount": 200},
+            {"id": "O002", "amount": 300}
+        ]
+    },
+    "C002": {
+        "name": "Mark",
+        "country": "France",
+        "orders": [
+            {"id": "O003", "amount": 500}
+        ]
+    }
+}
+
+
+customer_names=[value['name'] for key,value in customers.items()]
+
+print("Customer names are ",customer_names)
+
+order_ids=[
+    order["id"]
+    for customer in customers.values()
+    for order in customer["orders"]
+]
+
+print("order ids are ",order_ids)
+
+
+order_amounts=[order['amount']
+for customer in customers.values()
+for order in customer['orders']]
+
+print("order amounts are ",order_amounts)
+
+order_total= sum(order_amounts)
+print("order total is ",order_total)
+
+
+total_revenue_per_cust={}
+
+for customer_id, customer in customers.items():
+    total=0
+
+    for order in customer['orders']:
+        total= order['amount']+total
+    total_revenue_per_cust[customer_id]=total
+
+print(total_revenue_per_cust)
+
+all_orders=[]
+
+for customer in customers.values():
+    for orders in customer['orders']:
+        all_orders.append(orders)
+
+highest_order=max(all_orders, key= lambda order:order['amount'])
+
+print("highest order is ", highest_order)
+
+#highest_value_order=max()
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# MARKDOWN ********************
+
+# **Exercise 60**
+
+# CELL ********************
+
+'''  customers without orders
+orders with amount <= 0
+customers with total spending > 400'''
+
+customers = {
+    "C001": {
+        "name": "Anna",
+        "country": "Germany",
+        "orders": [
+            {"id": "O001", "amount": 200},
+            {"id": "O002", "amount": 300}
+        ]
+    },
+    "C002": {
+        "name": "Mark",
+        "country": "France",
+        "orders": [
+            {"id": "O003", "amount": 500}
+        ]
+    }
+}
+
+
+for customer_id,customer in customers.items():
+    if not customer['orders']:
+        print("customer without orders", customer_id)
+    else:
+        print("customer with orders ", customer_id)
+
+for customer_id,customer in customers.items():
+    for order in customer['orders']:
+        if order['amount']<=0:
+            print("order with 0 amount", order)
+        else:
+            print(f"order amount is {order['amount']} for {order['id']}")
+#total=0
+cust={}
+for customer_id, customer in customers.items():
+    total=0
+    for order in customer['orders']:
+        total=order['amount']+total
+    cust[customer_id]=total
+
+print(cust)
+
+cust_spending=[key for key,value in cust.items() if value >400]
+print(cust_spending)
+
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# MARKDOWN ********************
+
+# **Exercise 61**
+
+# CELL ********************
+
+'''Transaction cleaner
+
+Write:
+
+def clean_transaction(transaction):
+    ...
+
+Input:
+
+{
+    "id": "101",
+    "amount": "250.50"
+}
+
+Return:
+
+{
+    "id": 101,
+    "amount": 250.50
+}'''
+
+
 
 # METADATA ********************
 
